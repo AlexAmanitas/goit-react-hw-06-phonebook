@@ -12,13 +12,11 @@ const Contacts = () => {
   let contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
-  console.log(contacts);
-
   const handleOnClick = evt => {
     dispatch(deleteContacts(evt.currentTarget.id));
   };
+
   const filter = useSelector(state => state.filter.value);
-  console.log(filter);
   if (filter !== '')
     contacts = contacts.filter(contact => {
       return contact.name.toLowerCase().includes(filter);

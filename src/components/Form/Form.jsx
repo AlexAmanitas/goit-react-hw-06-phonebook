@@ -9,7 +9,6 @@ const Form = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
-    console.log(form.elements);
     dispatch(
       addContacts({
         id: uniqid(),

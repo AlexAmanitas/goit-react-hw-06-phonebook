@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import uniqid from 'uniqid';
-console.log(uniqid());
 
 const contactsSlice = createSlice({
   name: 'contacts',
