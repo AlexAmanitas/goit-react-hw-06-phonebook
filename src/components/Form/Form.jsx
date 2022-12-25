@@ -1,33 +1,10 @@
-// import { useState } from 'react';
-import PropTypes from 'prop-types';
 import uniqid from 'uniqid';
 import { TheForm, Label, Input, SubmitBtn } from './Form.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContacts } from 'redux/sliceContacts';
 
 const Form = () => {
   const dispatch = useDispatch();
-  const name = useSelector(state => state.contacts);
-  // const [id, setId] = useState(uniqid());
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
-
-  // const handleChange = evt => {
-  //   const { name, value } = evt.currentTarget;
-  //   console.log(name);
-  //   switch (name) {
-  //     case 'name':
-  //       dispatch(addContacts(name));
-  //       break;
-  //     case 'number':
-  //       dispatch(addContacts(value));
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  // };
-
-  console.log(name);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -75,7 +52,3 @@ const Form = () => {
 };
 
 export default Form;
-
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

@@ -14,34 +14,12 @@ const contactsSlice = createSlice({
     { id: 'id-7', name: 'Karl Fridr', number: '645-17-79' },
     { id: 'id-8', name: 'Joiur Masuro', number: '645-17-79' },
   ],
+
   reducers: {
     addContacts(state, action) {
       state.push(action.payload);
     },
-    // prepare: (name, number) => {
-    //   const id = uniqid();
-    //   return { payload: { id, name } };
-    // },
 
-    filterContacts(state, action) {
-      for (const contact of state) {
-        if (!contact.name.toLowerCase().includes(action.payload)) {
-          const index = state.findIndex(el => el.id === contact.id);
-          state.splice(index, 1);
-          console.log(index);
-        }
-        console.log(
-          contact.name,
-          action.payload,
-          contact.name.toLowerCase().includes(action.payload)
-        );
-      }
-      // console.log(state.contacts, action.payload);
-
-      // state.filter(contact => {
-      //   return contact.name.toLowerCase().includes(action.payload);
-      // });
-    },
     deleteContacts(state, action) {
       const index = state.findIndex(task => task.id === action.payload);
       state.splice(index, 1);
@@ -49,8 +27,5 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { addContacts, filterContacts, deleteContacts } =
-  contactsSlice.actions;
+export const { addContacts, deleteContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
-
-console.log(filterContacts);
