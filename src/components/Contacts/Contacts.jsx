@@ -19,7 +19,7 @@ const Contacts = () => {
   const filter = useSelector(state => state.filter.value);
   if (filter !== '')
     contacts = contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(filter);
+      return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
 
   return (
