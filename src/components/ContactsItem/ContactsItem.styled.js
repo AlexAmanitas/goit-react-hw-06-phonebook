@@ -5,12 +5,15 @@ export const ContactsItem = styled.li`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  justify-content: space-between;
 `;
 
-export const ContactName = styled.p``;
+export const ContactName = styled.p`
+  margin-right: auto;
+`;
 
-export const ContactNumber = styled.p``;
+export const ContactNumber = styled.p`
+  margin-right: 30px;
+`;
 
 export const DeleteButton = styled.button`
   height: 26px;
@@ -19,7 +22,7 @@ export const DeleteButton = styled.button`
   font-weight: 600;
   border-radius: 5px;
   border: none;
-  background-color: #fff;
+  background-color: #eee;
   color: #ff6c00;
   cursor: pointer;
   transition: background-color 300ms linear, color 300ms linear;
