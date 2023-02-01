@@ -1,19 +1,28 @@
 import uniqid from 'uniqid';
 import { TheForm, Label, Input, SubmitBtn } from './Form.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContacts } from 'redux/sliceContacts';
 
 const Form = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    const check = contacts.find(
+      el => el.name.toLowerCase() === name.toLowerCase()
+    );
+    if (check) {
+      return alert(`${name} is already exist.`);
+    }
     dispatch(
       addContacts({
         id: uniqid(),
-        name: form.elements.name.value,
-        number: form.elements.number.value,
+        name,
+        number,
       })
     );
     form.reset();
@@ -29,10 +38,7 @@ const Form = () => {
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
-        // value={name}
-        // onChange={handleChange}
       />
-
       <Label htmlFor="tel">Number</Label>
       <Input
         id="tel"
@@ -41,10 +47,7 @@ const Form = () => {
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
-        // value={number}
-        // onChange={handleChange}
       />
-
       <SubmitBtn type="submit">Add contact</SubmitBtn>
     </TheForm>
   );

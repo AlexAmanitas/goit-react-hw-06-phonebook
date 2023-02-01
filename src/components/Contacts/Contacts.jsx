@@ -1,19 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContacts } from 'redux/sliceContacts';
-import {
-  ContactList,
-  ContactListItem,
-  ContactName,
-  ContactNumber,
-  DeleteButton,
-} from './Contacts.styled';
+import ContactsListItem from 'components/ContactsItem';
+import { ContactList } from './Contacts.styled';
 
 const Contacts = () => {
   let contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const handleOnClick = evt => {
-    dispatch(deleteContacts(evt.currentTarget.id));
+    dispatch(deleteContacts(evt));
   };
 
   const filter = useSelector(state => state.filter.value);
@@ -24,16 +19,15 @@ const Contacts = () => {
 
   return (
     <ContactList>
-      {contacts.map(el => {
-        const { name, number, id } = el;
+      {contacts.map(({ name, number, id }) => {
         return (
-          <ContactListItem key={id}>
-            <ContactName>{name}</ContactName>
-            <ContactNumber>{number}</ContactNumber>
-            <DeleteButton id={id} type="button" onClick={handleOnClick}>
-              Delete
-            </DeleteButton>
-          </ContactListItem>
+          <ContactsListItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelete={handleOnClick}
+          />
         );
       })}
     </ContactList>
